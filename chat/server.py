@@ -93,7 +93,7 @@ async def main():
     print(time())
     port = int(os.getenv('PORT', "7000"))
     print('port', port)
-    async with serve(handleClient, host='localhost', port=port) as server:
+    async with serve(handleClient, host='0.0.0.0', port=port) as server:
         await server.serve_forever()
 
 
