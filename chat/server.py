@@ -7,7 +7,7 @@ from enum import Enum
 from constants import Header, Message, deserialize, serialize 
 from websockets.exceptions import ConnectionClosedOK
 import bisect
-
+import os
 
 class WSPeer():
     def __init__(self, conn: ServerConnection, connId):
@@ -91,7 +91,9 @@ from time import time
 
 async def main(): 
     print(time())
-    async with serve(handleClient, host='localhost', port=7000) as server:
+    port = int(os.getenv('PORT', "7000"))
+    print('port', port)
+    async with serve(handleClient, host='localhost', port=port) as server:
         await server.serve_forever()
 
 
